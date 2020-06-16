@@ -1,0 +1,30 @@
+# WEBcrawling-basement
+
+from urllib.request import urlopen
+from urllib.error import HTTPError
+from bs4 import BeautifulSoup
+
+def getTitle(url):
+    try:
+        html = urlopen(url) #판단을 해서 동작 한다 예외 상황이면 아랫부분은 코드 진행이 안됨
+        print('1')
+    except HTTPError as e:
+        print('2', e)
+        return None
+  
+    bsObj = BeautifulSoup(html.read(), "html.parser")
+    # class BeautifulSoup
+    #   def h1
+    #       return h1의 태그를 리턴
+    title = bsObj.body.h1
+    #   def body
+    #       def h1
+    return title
+
+
+title = getTitle("http://www.pythonscraping.com/pages/page1.html")
+
+if title == None:
+    print("Title could not be found")
+else:
+    print(title) 
