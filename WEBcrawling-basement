@@ -1,0 +1,10 @@
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+html = urlopen('http://www.pythonscraping.com/pages/page3.html')
+bs = BeautifulSoup(html, 'html.parser')
+
+for child in bs.find('table',{'id':'giftList'}).children: #children 자식 #descendants 자손, 알아본다고함
+    #자식 , 자손, 자손, 자손..... 
+    print('---------------------------------')
+    print(child)
